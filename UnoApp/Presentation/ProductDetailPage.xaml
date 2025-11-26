@@ -1,0 +1,107 @@
+﻿<Page
+    x:Class="UnoApp.Presentation.ProductDetailPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:uno="using:Uno.UI.Toolkit"
+    mc:Ignorable="d"
+    Background="White">
+
+    <Grid uno:VisibleBoundsPadding.PaddingMask="All">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Header + Back -->
+            <RowDefinition Height="*"/>
+            <!-- Nội dung cuộn -->
+            <RowDefinition Height="Auto"/>
+            <!-- Nút Mua Ngay (Dính đáy) -->
+        </Grid.RowDefinitions>
+
+        <!-- 1. Header có nút Back -->
+        <Grid Grid.Row="0" Padding="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Click="BackButton_Click" Background="Transparent" BorderThickness="0">
+                <SymbolIcon Symbol="Back"/>
+            </Button>
+            <TextBlock Text="Chi Tiết Sản Phẩm" FontSize="18" FontWeight="Bold" 
+                       VerticalAlignment="Center" Grid.Column="1" Margin="10,0,0,0"/>
+        </Grid>
+
+        <!-- 2. Nội dung chi tiết -->
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Padding="20" Spacing="20">
+
+                <!-- Ảnh lớn -->
+                <Border Height="250" Background="#F5F5F5" CornerRadius="16">
+                    <SymbolIcon Symbol="Camera" RenderTransformOrigin="0.5,0.5">
+                        <SymbolIcon.RenderTransform>
+                            <ScaleTransform ScaleX="3" ScaleY="3"/>
+                        </SymbolIcon.RenderTransform>
+                    </SymbolIcon>
+                </Border>
+
+                <!-- Tên và Giá -->
+                <StackPanel>
+                    <TextBlock x:Name="NameText" 
+                               Text="Tên Sản Phẩm" 
+                               FontSize="26" FontWeight="Bold" TextWrapping="Wrap"/>
+
+                    <TextBlock x:Name="PriceText" 
+                               Text="0 đ" 
+                               FontSize="24" FontWeight="ExtraBold" Foreground="#D32F2F"
+                               Margin="0,10,0,0"/>
+                </StackPanel>
+
+                <MenuFlyoutSeparator/>
+
+                <!-- Thông tin thêm -->
+                <Grid ColumnSpacing="20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="Đơn vị tính" Foreground="Gray"/>
+                        <TextBlock x:Name="UnitText" Text="Cái" FontWeight="SemiBold"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Text="Mã vạch" Foreground="Gray"/>
+                        <TextBlock x:Name="BarcodeText" Text="UNKNOWN" FontWeight="SemiBold"/>
+                    </StackPanel>
+                </Grid>
+
+                <TextBlock Text="Mô tả sản phẩm" FontWeight="Bold" Margin="0,10,0,0"/>
+                <TextBlock Text="Sản phẩm chất lượng cao, được nhập khẩu chính hãng. Bảo hành 12 tháng..." 
+                           Foreground="Gray" TextWrapping="Wrap"/>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- 3. Thanh Mua Hàng (Sticky Bottom) -->
+        <Grid Grid.Row="2" Padding="20" Background="White" 
+              BorderBrush="#E0E0E0" BorderThickness="0,1,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Nút Yêu thích -->
+            <Button Width="50" Height="50" CornerRadius="25" Background="#F0F0F0" Margin="0,0,15,0">
+                <SymbolIcon Symbol="Favorite" Foreground="Gray"/>
+            </Button>
+
+            <!-- Nút Thêm vào giỏ -->
+            <Button Grid.Column="1" 
+                    Content="Thêm vào giỏ hàng" 
+                    Background="#6200EE" Foreground="White"
+                    HorizontalAlignment="Stretch" Height="50" CornerRadius="25"
+                    FontSize="16" FontWeight="Bold"
+                    Click="AddToCart_Click"/>
+        </Grid>
+    </Grid>
+</Page>
